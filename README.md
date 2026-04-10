@@ -36,7 +36,7 @@ Aplicación web desarrollada en **Vue.js 3** como prueba técnica para el puesto
 ## 🛠️ Stack Tecnológico
 
 - **Vue.js 3** — Composition API con `<script setup>`
-- **Vue Router 4** — Navegación SPA con guards de autenticación
+- **Vue Router 5** — Navegación SPA con guards de autenticación
 - **Vite** — Bundler y servidor de desarrollo
 - **JavaScript ES6+**
 - **CSS3** — Estilos propios sin frameworks de UI externos
@@ -81,7 +81,7 @@ myper-frontend/
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/tu-usuario/myper-frontend.git
+git clone https://github.com/RichardCode1997/Myper-Frontend.git
 
 # 2. Ingresar a la carpeta del proyecto
 cd myper-frontend
