@@ -17,10 +17,11 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { ref, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import AppSidebar from './components/AppSidebar.vue'
 import AppHeader from './components/AppHeader.vue'
+
 
 const route = useRoute()
 const sidebarOpen = ref(false)
@@ -30,11 +31,18 @@ const isAuthenticated = ref(!!localStorage.getItem('myper_user'))
 function handleResize() {
   isMobile.value = window.innerWidth <= 768
   if (!isMobile.value) sidebarOpen.value = false
+  nextTick(() => {
+    isMobile.value = window.innerWidth <= 768
+  })
 }
 
 watch(() => route.path, () => {
   isAuthenticated.value = !!localStorage.getItem('myper_user')
+  isMobile.value = window.innerWidth <= 768
   sidebarOpen.value = false
+  nextTick(() => {
+    isMobile.value = window.innerWidth <= 768
+  })
 })
 
 onMounted(() => window.addEventListener('resize', handleResize))

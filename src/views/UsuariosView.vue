@@ -296,7 +296,10 @@ function confirmDelete() {
   userToDelete.value    = null
 }
 
-onMounted(() => fetchUsers())
+onMounted(() => {
+  window.dispatchEvent(new Event('resize'))
+  fetchUsers()
+})
 </script>
 
 <style scoped>
