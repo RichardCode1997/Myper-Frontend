@@ -545,10 +545,19 @@ input.input-error { border-color: var(--danger); }
 }
 
 /* ── Responsive ── */
+@media (max-width: 1024px) {
+  th, td { padding: 10px 10px; font-size: 0.8rem; }
+  .td-muted { font-size: 0.75rem; }
+  .btn-edit, .btn-delete { padding: 5px 8px; font-size: 0.75rem; }
+}
+
+@media (max-width: 950px) {
+  th:nth-child(4), td:nth-child(4),
+  th:nth-child(5), td:nth-child(5) { display: none; }
+}
+
 @media (max-width: 768px) {
   .page-title { font-size: 1.3rem; }
-
-  /* Ocultar tabla, mostrar cards */
   .table-wrap { display: none; }
   .cards-wrap { display: flex; }
 }

@@ -2,13 +2,13 @@
   <div id="app-root">
     <template v-if="isAuthenticated">
       <AppSidebar :isOpen="!isMobile || sidebarOpen" @close="sidebarOpen = false" />
-      <div class="app-content">
+      <div class="app-content" :style="{ marginLeft: isMobile ? '0px' : '220px' }">
         <AppHeader @toggleSidebar="sidebarOpen = !sidebarOpen" />
         <main class="main-content">
           <router-view />
         </main>
       </div>
-      <div class="sidebar-overlay" v-if="sidebarOpen" @click="sidebarOpen = false"></div>
+      <div class="sidebar-overlay" v-if="isMobile && sidebarOpen" @click="sidebarOpen = false"></div>
     </template>
     <template v-else>
       <router-view />
@@ -25,7 +25,6 @@ import AppHeader from './components/AppHeader.vue'
 const route = useRoute()
 const sidebarOpen = ref(false)
 const isMobile = ref(window.innerWidth <= 768)
-
 const isAuthenticated = ref(!!localStorage.getItem('myper_user'))
 
 function handleResize() {
@@ -52,8 +51,8 @@ onUnmounted(() => window.removeEventListener('resize', handleResize))
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-left: var(--sidebar-width);
   min-height: 100vh;
+  transition: margin-left 0.3s ease;
 }
 
 .main-content {
@@ -63,7 +62,6 @@ onUnmounted(() => window.removeEventListener('resize', handleResize))
 }
 
 .sidebar-overlay {
-  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.5);
@@ -71,14 +69,6 @@ onUnmounted(() => window.removeEventListener('resize', handleResize))
 }
 
 @media (max-width: 768px) {
-  .app-content {
-    margin-left: 0 !important;
-  }
-  .main-content {
-    padding: 20px 16px;
-  }
-  .sidebar-overlay {
-    display: block;
-  }
+  .main-content { padding: 20px 16px; }
 }
 </style>
